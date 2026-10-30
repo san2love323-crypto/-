@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>사회역사 학습 랩 | 중1~고3 사회·역사 시뮬레이션·게임·학습지·퀴즈</title>
-<meta name="description" content="중학교 1학년부터 고등학교 3학년까지 사회·역사 전 단원을 시뮬레이션, 경쟁 퀴즈 레이스, 강의 영상, 랜덤 학습지, 퀴즈, 모의시험으로 공부하는 무료 학습 사이트.">
-<meta name="keywords" content="중학 사회, 중학 역사, 고등 통합사회, 한국사, 세계사, 정치와 법, 경제, 세계지리, 학습지, 퀴즈, 시뮬레이션, 수업 자료">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="사회역사 학습 랩">
-<meta property="og:description" content="시뮬레이션·레이스 게임·영상·학습지·퀴즈로 배우는 중1~고3 사회·역사">
-<meta property="og:url" content="https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/">
-<meta property="og:locale" content="ko_KR">
-<meta name="theme-color" content="#101b33">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"사회역사 학습 랩","url":"https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/","description":"중1~고3 사회·역사 학습 사이트: 시뮬레이션, 경쟁 게임, 영상, 학습지, 퀴즈","inLanguage":"ko"}</script>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>사회역사 학습 랩</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
 /* Layout: glowing navy "night lab". Sticky top bar, grade chips, unit rail, main stage. Dark-first with full light theme. */
@@ -150,9 +136,16 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:6px 8px;b
 @media (max-width:860px){.wrap{grid-template-columns:1fr}.rail{display:none}.unitsel{display:block}.vs{grid-template-columns:1fr}.feat{columns:1}.map{grid-template-columns:repeat(8,1fr)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{body{background:#fff!important;color:#000!important}.top,.hero,.rail,.mods,.uhead .row,.footer,.toast,.card:first-of-type .row,#wsBody ~ *{display:none!important}.wrap{display:block;padding:0}.card{border:none;box-shadow:none;padding:0}.ws .item{background:#fff;border:1px solid #ccc;break-inside:avoid}.stage>.card:first-child{display:none}}
+/* gate */
+body.gated .top,body.gated .hero,body.gated .wrap,body.gated .footer{display:none!important}
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.gate-in{width:100%;max-width:820px}
+.gate-roles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:18px}
+.gate-roles .card{display:flex;flex-direction:column}
+.gate-roles input,.gate-roles select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:inherit}
+.pill.good{background:rgba(52,211,153,.18);color:var(--good)}
 </style>
-</head>
-<body>
+
 <header class="top">
   <div class="brand"><div class="mark">史</div><div><h1>사회역사 학습 랩</h1><small>교과서 속 역사·사회를 손끝으로 🧭</small></div></div>
   <nav class="grades" id="grades"></nav>
@@ -653,14 +646,15 @@ h3:[
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const rnd=n=>Math.floor(Math.random()*n), shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
 const store={get(k,d){try{const v=localStorage.getItem('hl.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('hl.'+k,JSON.stringify(v))}catch(e){}}};
-const MODS=[['days','📅 일차별 요약'],['sim','🧪 시뮬레이션'],['race','🎮 게임'],['video','🎬 영상'],['ws','📄 학습지'],['quiz','❓ 퀴즈'],['exam','📝 모의시험'],['stats','📊 통계'],['teacher','👩‍🏫 선생님 도구']];
+const MODS=[['days','📅 일차별 요약'],['sim','🧪 시뮬레이션'],['race','🎮 게임'],['video','🎬 영상'],['ws','📄 학습지'],['quiz','❓ 퀴즈'],['exam','📝 모의시험'],['stats','📊 통계'],['units','📚 단원 요약'],['my','📈 내 기록'],['teacher','👩‍🏫 선생님 도구']];
 let S={g:0,u:0,mod:'sim',sem:1};
 Object.assign(S,store.get('nav',{}));if(!GRADES[S.g]||!GRADES[S.g].units[S.u]){S.g=0;S.u=0}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1800)}
 function G(){return GRADES[S.g]} function U(){return G().units[S.u]} function key(){return G().id+':'+S.u}
 function allQuiz(){return QUIZ.concat(store.get('myq',[]))}
 function poolQuiz(gid){const p=allQuiz().filter(q=>q.g===gid);return p.length?p:allQuiz()}
-function poolFacts(gid){const p=FACTS.filter(f=>f.g===gid);return p.length?p:FACTS}
+function allFacts(){return FACTS.concat(store.get('myf',[]))}
+function poolFacts(gid){const p=allFacts().filter(f=>f.g===gid);return p.length?p:allFacts()}
 
 /* ================= NAV ================= */
 function renderNav(){
@@ -679,10 +673,10 @@ function renderNav(){
  const rec=store.get('rec.'+key(),{best:null,n:0});
  $('#uBest').textContent='퀴즈 최고 '+(rec.best==null?'–':rec.best+'점');
  $('#uDone').textContent='퀴즈 '+rec.n+'회';
- $('#mods').innerHTML=MODS.map(m=>`<button class="${m[0]===S.mod?'on':''}" data-m="${m[0]}">${m[1]}</button>`).join('');
+ $('#mods').innerHTML=visMods().map(m=>`<button class="${m[0]===S.mod?'on':''}" data-m="${m[0]}">${m[1]}</button>`).join('');
  $$('#mods button').forEach(b=>b.onclick=()=>{S.mod=b.dataset.m;go()});
 }
-function go(){store.set('nav',{g:S.g,u:S.u,mod:S.mod,sem:S.sem});renderNav();stopRace();({days:renderDays,sim:renderSim,race:renderGames,video:renderVideo,ws:renderWS,quiz:renderQuiz,exam:renderExam,stats:renderStats,teacher:renderTeacher})[S.mod]()}
+function go(){store.set('nav',{g:S.g,u:S.u,mod:S.mod,sem:S.sem});renderNav();stopRace();if(S.mod==='teacher'&&!isT())S.mod='days';if(S.mod==='my'&&!isS())S.mod='days';({days:renderDays,sim:renderSim,race:renderGames,video:renderVideo,ws:renderWS,quiz:renderQuiz,exam:renderExam,stats:renderStats,teacher:renderTeacher,units:renderUnits,my:renderMy})[S.mod]()}
 
 /* ================= TIMER ================= */
 let tmSec=0,tmOn=null;
@@ -1285,9 +1279,10 @@ function simClimatechange(el){
 }
 
 /* ================= TEACHER TOOLS ================= */
-function renderTeacher(){
+function renderTeacher(){if(!requireTeacher())return;
  const teams=store.get('teams',[{n:'1모둠',s:0},{n:'2모둠',s:0},{n:'3모둠',s:0},{n:'4모둠',s:0}]);const myq=store.get('myq',[]);const big=store.get('big',false);
  $('#content').innerHTML=`<div class="grid2">
+ ${teacherStatsCard()}
  <div class="card"><div class="row between"><h3>🏆 모둠 점수판</h3><div class="row"><button class="sm" id="tmAdd">모둠 추가</button><button class="sm" id="tmZero">0점으로</button></div></div>
   <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px" id="teamList">${teams.map((t,i)=>`<div class="row" style="background:var(--panel2);border-radius:12px;padding:8px 12px"><input type="text" value="${t.n}" data-tn="${i}" style="width:110px;padding:4px 8px"><b class="num" style="font-family:var(--display);font-size:24px;min-width:48px;text-align:center">${t.s}</b><button class="sm" data-tp="${i}" data-v="1">+1</button><button class="sm" data-tp="${i}" data-v="3">+3</button><button class="sm" data-tp="${i}" data-v="-1">-1</button><button class="sm" data-tdel="${i}" style="margin-left:auto">✕</button></div>`).join('')}</div>
   <div class="row" style="margin-top:10px"><button class="pri" id="tmWin">🎉 우승 발표</button></div></div>
@@ -1295,7 +1290,8 @@ function renderTeacher(){
   <div id="pkOut" style="text-align:center;font-family:var(--display);font-size:64px;min-height:80px;line-height:80px">?</div><div id="pkHist" style="font-size:13px;color:var(--muted);text-align:center"></div></div>
  <div class="card"><h3>✍️ 내 문제 등록 (퀴즈·시험·레이스에 자동 포함)</h3><p style="font-size:13px;color:var(--muted);margin:4px 0 8px">현재 학년(${G().name})으로 저장됩니다. 등록 ${myq.length}개.</p>
   <div style="display:flex;flex-direction:column;gap:6px"><input type="text" id="mqQ" placeholder="문제"><div class="grid2" style="gap:6px"><input type="text" id="mqA" placeholder="정답 (①)"><input type="text" id="mqB" placeholder="오답 ②"><input type="text" id="mqC" placeholder="오답 ③"><input type="text" id="mqD" placeholder="오답 ④"></div><input type="text" id="mqE" placeholder="해설 (선택)"><div class="row"><button class="pri" id="mqAdd">추가</button><button class="sm" id="mqExport">내보내기(복사)</button><button class="sm" id="mqImport">붙여넣기로 가져오기</button></div></div>
-  <div class="ws" style="margin-top:10px;max-height:220px;overflow:auto">${myq.map((q,i)=>`<div class="item"><i>${i+1}</i><div style="flex:1;font-size:13px">${q.q}<div class="ans">${q.o[q.a]}</div></div><button class="sm" data-mqdel="${i}">삭제</button></div>`).join('')||'<p style="font-size:13px;color:var(--muted)">아직 등록한 문제가 없어요.</p>'}</div></div>
+  <div class="ws" style="margin-top:10px;max-height:220px;overflow:auto">${myq.map((q,i)=>`<div class="item"><i>${i+1}</i><div style="flex:1;font-size:13px">${q.ai?'🤖 ':''}${q.q}<div class="ans">${q.o[q.a]}</div></div><button class="sm" data-mqdel="${i}">삭제</button></div>`).join('')||'<p style="font-size:13px;color:var(--muted)">아직 등록한 문제가 없어요.</p>'}</div></div>
+ ${aiTeacherCard()}
  <div class="card"><h3>🖥️ 수업 화면 설정</h3><label style="display:flex;gap:8px;align-items:center;margin:10px 0"><input type="checkbox" id="bigMode" ${big?'checked':''}> 프로젝터 모드 (글자·버튼 크게)</label>
   <div class="row"><button class="sm" id="bkExport">전체 기록 백업(복사)</button><button class="sm" id="bkImport">백업 붙여넣기로 복원</button></div>
   <p style="font-size:13px;color:var(--muted);margin-top:8px">점수·기록은 이 브라우저에 저장됩니다. 다른 컴퓨터로 옮길 땐 백업 텍스트를 복사해서 거기서 복원하세요.</p>
@@ -1318,7 +1314,92 @@ function renderTeacher(){
  $('#bigMode').onchange=e=>{store.set('big',e.target.checked);applyBig()};
  $('#bkExport').onclick=()=>{const all={};try{Object.keys(localStorage).filter(k=>k.startsWith('hl.')).forEach(k=>all[k]=localStorage.getItem(k))}catch(e){}navigator.clipboard.writeText(JSON.stringify(all)).then(()=>toast('백업을 복사했습니다')).catch(()=>toast('복사 차단'))};
  $('#bkImport').onclick=()=>importBox(d=>{try{Object.entries(d).forEach(([k,v])=>{if(k.startsWith('hl.'))localStorage.setItem(k,v)})}catch(e){}});
+ aiTeacherBind();teacherStatsBind();
 }
+const hesc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* ================= 계정(학생/선생님) ================= */
+const TEACHER_NAME='시준쌤';
+const TEACHER_ID_HASH='05852063444afbf13ff44fb70fbc7911cd1c3e37f02bd0bda41a5c0f84b18d03';
+const TEACHER_PW_HASH='563dfdc0386754287cf3204eef9dc8284f7711937eff131b58d25f5f833d594d';
+let SES=store.get('session',{role:null,student:null});
+const isT=()=>SES.role==='teacher',isS=()=>SES.role==='student';
+async function sha(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return null}}
+function logAct(type,detail,score){if(!isS())return;const L=store.get('log',[]);L.push({t:Date.now(),s:SES.student.name,n:SES.student.no,g:G().id,type,detail,score:score==null?null:score});if(L.length>5000)L.splice(0,L.length-5000);store.set('log',L);const st=store.get('students',{});st[SES.student.name+'#'+SES.student.no]={name:SES.student.name,no:SES.student.no,g:G().id,last:Date.now()};store.set('students',st)}
+const myLog=()=>isS()?store.get('log',[]).filter(l=>l.s===SES.student.name&&l.n===SES.student.no):[];
+const fmtT=t=>{const d=new Date(t);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`};
+function visMods(){return MODS.filter(m=>m[0]==='teacher'?isT():m[0]==='my'?isS():true)}
+function requireTeacher(){if(!isT()){toast('선생님만 사용할 수 있습니다');S.mod='days';go();return false}return true}
+function renderGate(){let g=document.getElementById('gate');if(!g){g=document.createElement('div');g.id='gate';document.body.appendChild(g)}document.body.classList.add('gated');
+ const recent=Object.values(store.get('students',{})).sort((a,b)=>b.last-a.last).slice(0,5).map(s=>hesc(s.name)).join(', ');
+ g.innerHTML=`<div class="gate-in"><div class="brand" style="margin-bottom:6px"><div class="mark">史</div><div><h1 style="margin:0">사회역사 학습 랩</h1><small style="color:var(--muted)">${TEACHER_NAME}과 함께하는 사회·역사 시간</small></div></div>
+ <div class="gate-roles">
+  <div class="card"><div style="font-size:30px">🎒</div><h3>학생으로 입장</h3><p style="font-size:13px;color:var(--muted);margin:6px 0 10px">이름·번호·학년만 적으면 바로 시작! 퀴즈·모의시험·레이스 기록이 ${TEACHER_NAME}께 전달돼요.</p><form id="gS" style="display:flex;flex-direction:column;gap:8px"><div class="row"><input type="text" id="gName" placeholder="이름" required style="flex:1;min-width:100px"><input type="number" id="gNo" placeholder="번호" min="1" max="99" required style="width:90px"></div><select id="gGrade">${GRADES.map((x,i)=>`<option value="${i}">${x.name}</option>`).join('')}</select><button class="pri" type="submit">입장하기 →</button></form></div>
+  <div class="card"><div style="font-size:30px">👩‍🏫</div><h3>${TEACHER_NAME}으로 입장</h3><p style="font-size:13px;color:var(--muted);margin:6px 0 10px">아이디와 비밀번호가 필요해요. 학생 통계, 모둠 점수판, 문제 등록, AI 문제 생성을 관리합니다.</p><form id="gT" style="display:flex;flex-direction:column;gap:8px"><input type="text" id="gId" placeholder="아이디" autocomplete="username"><input type="password" id="gPw" placeholder="비밀번호" autocomplete="current-password"><button class="pri" type="submit">로그인 →</button><div id="gErr" style="font-size:13px;color:var(--bad);min-height:18px"></div></form></div>
+ </div><p style="font-size:12px;color:var(--muted);margin-top:16px">최근 학생: ${recent||'아직 없음'}</p></div>`;
+ const last=store.get('lastStudent');if(last){$('#gName').value=last.name;$('#gNo').value=last.no;$('#gGrade').value=last.g}
+ $('#gS').onsubmit=e=>{e.preventDefault();const name=$('#gName').value.trim(),no=+$('#gNo').value;if(!name||!no){toast('이름과 번호를 입력하세요');return}SES={role:'student',student:{name,no}};store.set('session',SES);store.set('lastStudent',{name,no,g:$('#gGrade').value});S.g=+$('#gGrade').value;S.sem=1;S.u=G().units.findIndex(u=>u[2]===1);S.mod='days';enterApp();logAct('입장','학생 입장')};
+ $('#gT').onsubmit=async e=>{e.preventDefault();const hi=await sha($('#gId').value.trim()),hp=await sha($('#gPw').value);if(hi===null){$('#gErr').textContent='이 브라우저에서는 로그인 기능을 쓸 수 없습니다(https 필요).';return}if(hi===TEACHER_ID_HASH&&hp===TEACHER_PW_HASH){SES={role:'teacher',student:null};store.set('session',SES);S.mod='teacher';enterApp();toast(TEACHER_NAME+', 환영합니다')}else{$('#gErr').textContent='아이디 또는 비밀번호가 맞지 않습니다.';$('#gPw').value=''}}}
+function enterApp(){const g=document.getElementById('gate');if(g)g.remove();document.body.classList.remove('gated');let who=$('#who');if(!who){who=document.createElement('div');who.id='who';who.className='row';who.style.cssText='gap:6px;align-items:center';$('.tools').appendChild(who)}
+ who.innerHTML=`<span class="pill" style="font-weight:700">${isT()?'👩‍🏫 '+TEACHER_NAME:'🎒 '+hesc(SES.student.name)+' ('+SES.student.no+'번)'}</span><button class="sm" id="logoutBtn">나가기</button>`;$('#logoutBtn').onclick=()=>{if(isS())logAct('퇴장','학생 퇴장');SES={role:null,student:null};store.set('session',SES);who.remove();renderGate()};
+ if(S.mod==='teacher'&&!isT())S.mod='days';if(S.mod==='my'&&!isS())S.mod='days';go()}
+function renderSetup(){document.body.classList.add('gated');let g=document.getElementById('gate');if(!g){g=document.createElement('div');g.id='gate';document.body.appendChild(g)}const has=!!AI.key();
+ g.innerHTML=`<div class="gate-in" style="max-width:560px"><div class="card"><div class="eyebrow">관리자 전용 · 비밀 설정 페이지</div><h2 style="margin:4px 0 6px">🔑 AI 키 설정</h2><p style="font-size:13px;color:var(--muted)">여기서 저장한 키는 <b>지금 이 브라우저</b>에만 저장돼요. 사이트 코드·다른 사람에게는 전달되지 않아요. 이 페이지 주소는 아무에게도 알려주지 마세요.</p>
+ <div class="row" style="margin-top:12px"><span class="pill ${has?'good':''}">${has?'✓ 이 기기에 키 저장됨':'키 없음'}</span></div>
+ <input type="password" id="suKey" placeholder="${has?'새 키로 바꾸려면 입력 (sk-ant-...)':'sk-ant-...'}" style="width:100%;margin-top:10px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:inherit;font-family:monospace" autocomplete="off">
+ <select id="suModel" style="width:100%;margin-top:8px;padding:10px 12px;border-radius:10px">${AI.MODELS.map(m=>`<option value="${m[0]}" ${m[0]===AI.model()?'selected':''}>${m[1]}</option>`).join('')}</select>
+ <div class="row" style="margin-top:14px"><button class="pri" id="suSave">저장</button><button id="suTest">연결 테스트</button>${has?'<button id="suDel" style="color:var(--bad)">키 삭제</button>':''}<span style="flex:1"></span><button class="sm" id="suBack">사이트로 →</button></div><div id="suMsg" style="font-size:13px;margin-top:10px;min-height:20px"></div></div></div>`;
+ const kv=()=>{const v=$('#suKey').value.trim();if(v){store.set('aiKey',v);store.set('aiKeyLinked',true)}store.set('aiModel',$('#suModel').value)};
+ $('#suSave').onclick=()=>{kv();toast('저장했습니다');renderSetup()};$('#suBack').onclick=()=>{history.replaceState(null,'',location.pathname+location.search);g.remove();initGate()};const dl=$('#suDel');if(dl)dl.onclick=()=>{store.set('aiKey','');toast('삭제했습니다');renderSetup()};
+ $('#suTest').onclick=async()=>{kv();$('#suMsg').textContent='연결 중…';try{const r=await AI.chat('Reply with exactly: OK','ping',{max:10});renderSetup();$('#suMsg').innerHTML=`<span style="color:var(--good)">연결 성공 ✓ 저장됐어요 (${hesc(r.text.trim().slice(0,20))})</span>`}catch(e){$('#suMsg').innerHTML=`<span style="color:var(--bad)">${hesc(e.message)}</span>`}}}
+function initGate(){if(setupMode()){renderSetup();return}if(SES.role)enterApp();else renderGate()}
+/* ---- 단원 요약 (DAYS 기반) ---- */
+function renderUnits(){const gid=G().id;const list=G().units;const items=list.map((u,i)=>({u,i})).filter(x=>x.u[2]===S.sem);const doneKey=isS()?'unitsDone.'+gid+'.'+SES.student.no:null;const done=doneKey?store.get(doneKey,[]):[];const open=store.get('unitsOpen',{})[gid];
+ const subsOf=i=>((DAYS[gid]||[])[i]||[]).map(d=>[d[0],d[1]||[],d[2]]);const total=items.reduce((a,x)=>a+subsOf(x.i).length,0);const doneN=items.reduce((a,x)=>a+subsOf(x.i).filter((_,si)=>done.includes(x.i+'-'+si)).length,0);
+ $('#content').innerHTML=`<div class="card"><div class="row between"><div><div class="eyebrow">📚 ${G().name} 단원 요약</div><h3>${S.sem}학기 · ${items.length}개 단원 · ${total}개 일차 요약</h3></div><div class="row">${doneKey?`<span class="pill ${doneN===total&&total?'good':''}">${doneN}/${total} 완료</span>`:''}<button class="sm" id="unAll">모두 펼치기</button><button class="sm" id="unCopy">전체 복사</button></div></div>${doneKey?`<div class="bar" style="margin-top:10px"><i style="width:${total?doneN/total*100:0}%"></i></div>`:''}<p style="font-size:13px;color:var(--muted);margin-top:8px">왼쪽 학년·학기를 바꾸면 다른 범위를 볼 수 있어요. 단원 제목을 누르면 일차별 핵심 정리가 펼쳐집니다.</p></div>
+ ${items.map((x,k)=>{const subs=subsOf(x.i);const isOpen=open===x.i||open==='all';const dn=subs.filter((_,si)=>done.includes(x.i+'-'+si)).length;return `<div class="card" style="padding:0;overflow:hidden;margin-top:10px"><button data-un="${x.i}" style="width:100%;text-align:left;border:none;background:transparent;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:0;color:inherit;cursor:pointer"><b style="font-family:var(--display);font-size:17px">${k+1}. ${hesc(x.u[0])}</b><span class="pill">${subs.length?dn+'/'+subs.length+' · ':''}${isOpen?'접기':'펼치기'}</span></button>
+  <div ${isOpen?'':'hidden'} style="padding:0 18px 16px;display:flex;flex-direction:column;gap:10px">${subs.length?subs.map((sb,si)=>{const kk=x.i+'-'+si;const d=done.includes(kk);return `<div class="card soft" style="border-left:3px solid ${d?'var(--good)':'var(--accent,#5b8def)'}"><div class="row between"><b>${d?'✅ ':''}${hesc(sb[0])}</b>${doneKey?`<button class="sm ${d?'':'pri'}" data-dn="${kk}">${d?'완료 취소':'공부 완료 ✓'}</button>`:''}</div><ul style="margin:6px 0 0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px">${sb[1].map(l=>`<li>${hesc(l)}</li>`).join('')}</ul>${sb[2]?`<div style="font-size:12px;color:var(--muted);margin-top:6px">핵심 용어: ${hesc([].concat(sb[2]).join(', '))}</div>`:''}</div>`}).join(''):'<p style="font-size:13px;color:var(--muted)">이 단원은 아직 일차별 요약이 없어요.</p>'}</div></div>`}).join('')}`;
+ const setOpen=v=>{const o=store.get('unitsOpen',{});o[gid]=v;store.set('unitsOpen',o);renderUnits()};$$('[data-un]').forEach(b=>b.onclick=()=>setOpen(open===+b.dataset.un?null:+b.dataset.un));$('#unAll').onclick=()=>setOpen(open==='all'?null:'all');
+ $$('[data-dn]').forEach(b=>b.onclick=()=>{const kk=b.dataset.dn;let d=store.get(doneKey,[]);d=d.includes(kk)?d.filter(x=>x!==kk):[...d,kk];store.set(doneKey,d);const [ui,si]=kk.split('-');logAct('단원요약',(d.includes(kk)?'완료: ':'해제: ')+list[ui][0]+' › '+subsOf(+ui)[si][0]);renderUnits()});
+ $('#unCopy').onclick=()=>navigator.clipboard.writeText(`${G().name} ${S.sem}학기 단원 요약\n\n`+items.map((x,k)=>`${k+1}. ${x.u[0]}\n`+subsOf(x.i).map(sb=>'  ['+sb[0]+']\n'+sb[1].map(l=>'   - '+l).join('\n')).join('\n')).join('\n\n')).then(()=>toast('복사했습니다')).catch(()=>toast('복사가 차단되었습니다'))}
+/* ---- 학생: 내 기록 ---- */
+function renderMy(){if(!isS()){S.mod='days';go();return}const L=myLog().slice().reverse();const types={};L.forEach(l=>{if(l.score!=null){(types[l.type]=types[l.type]||[]).push(l.score)}});const code=btoa(unescape(encodeURIComponent(JSON.stringify({v:1,student:SES.student,g:G().id,log:myLog().slice(-300)}))));
+ $('#content').innerHTML=`<div class="grid3">${Object.entries(types).map(([k,v])=>`<div class="card"><div class="eyebrow">${hesc(k)} 평균</div><b style="font-size:26px;font-family:var(--display)">${Math.round(v.reduce((a,b)=>a+b,0)/v.length)}점</b><div style="font-size:13px;color:var(--muted)">${v.length}회</div></div>`).join('')||'<div class="card"><p style="font-size:13px;color:var(--muted)">퀴즈·모의시험·레이스를 하면 점수가 모여요.</p></div>'}</div>
+ <div class="card" style="margin-top:12px"><h3>📤 활동 코드</h3><p style="font-size:13px;color:var(--muted);margin:4px 0 8px">내 폰·집 컴퓨터에서 공부했다면 이 코드를 복사해 ${TEACHER_NAME}께 보내세요. 선생님 도구 → 학생 통계에 붙여 넣으면 기록이 합쳐져요.</p><div class="row"><input id="myCode" readonly value="${code}" style="flex:1;font-family:monospace;font-size:12px"><button class="pri sm" id="myCp">복사</button></div></div>
+ <div class="card" style="margin-top:12px"><h3>🕒 최근 활동 (${L.length})</h3><table style="margin-top:6px"><tr><th>시간</th><th>활동</th><th>내용</th><th class="tright">점수</th></tr>${L.slice(0,40).map(l=>`<tr><td style="color:var(--muted);font-size:13px">${fmtT(l.t)}</td><td>${hesc(l.type)}</td><td style="font-size:13px">${hesc(l.detail)}</td><td class="tright num">${l.score==null?'':l.score}</td></tr>`).join('')||'<tr><td colspan="4" style="color:var(--muted)">아직 없음</td></tr>'}</table></div>`;
+ $('#myCp').onclick=()=>navigator.clipboard.writeText(code).then(()=>toast('복사했습니다')).catch(()=>{$('#myCode').select();toast('길게 눌러 복사하세요')})}
+/* ---- 선생님: 학생 통계 카드 ---- */
+function teacherStatsCard(){const L=store.get('log',[]);const st=Object.values(store.get('students',{})).sort((a,b)=>a.g.localeCompare(b.g)||a.no-b.no);const now=Date.now();const live=L.filter(l=>now-l.t<10*60*1000).length;const today=L.filter(l=>new Date(l.t).toDateString()===new Date().toDateString()).length;const sc=L.filter(l=>l.score!=null);
+ return `<div class="card" style="grid-column:1/-1"><div class="row between"><h3>📊 학생 통계</h3><div class="row"><span class="pill">학생 ${st.length}명</span><span class="pill">오늘 ${today}회</span><span class="pill ${live?'good':''}">지금 활동 ${live}</span><span class="pill">전체 평균 ${sc.length?Math.round(sc.reduce((a,l)=>a+l.score,0)/sc.length):'–'}</span><button class="sm" id="stCsv">CSV 복사</button></div></div>
+ <div style="max-height:260px;overflow:auto;margin-top:8px"><table><tr><th>학년</th><th>번호</th><th>이름</th><th class="tright">활동</th><th class="tright">퀴즈</th><th class="tright">모의시험</th><th class="tright">레이스</th><th>최근</th></tr>${st.map(s=>{const my=L.filter(l=>l.s===s.name&&l.n===s.no);const avg=t=>{const v=my.filter(l=>l.type===t&&l.score!=null).map(l=>l.score);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):'–'};return `<tr><td style="font-size:12px;color:var(--muted)">${(GRADES.find(g=>g.id===s.g)||{}).name||s.g}</td><td class="num">${s.no}</td><td><b>${hesc(s.name)}</b></td><td class="tright num">${my.length}</td><td class="tright num">${avg('퀴즈')}</td><td class="tright num">${avg('모의시험')}</td><td class="tright num">${avg('레이스')}</td><td style="font-size:12px;color:var(--muted)">${fmtT(s.last)}</td></tr>`}).join('')||'<tr><td colspan="8" style="color:var(--muted)">아직 입장한 학생이 없어요</td></tr>'}</table></div>
+ <div class="row" style="margin-top:10px"><input id="stCode" placeholder="학생 활동 코드 붙여넣기 → 기록 합치기" style="flex:1;font-family:monospace;font-size:12px"><button class="sm pri" id="stImp">가져오기</button><button class="sm" id="stWipe" style="color:var(--bad)">학생 기록 전체 삭제</button></div><div id="stMsg" style="font-size:13px;margin-top:6px;min-height:18px"></div>
+ <details style="margin-top:8px;font-size:13px"><summary>최근 활동 30개</summary><table style="margin-top:6px"><tr><th>시간</th><th>학생</th><th>활동</th><th>내용</th><th class="tright">점수</th></tr>${L.slice(-30).reverse().map(l=>`<tr><td style="color:var(--muted)">${fmtT(l.t)}</td><td>${hesc(l.s)} (${l.n})</td><td>${hesc(l.type)}</td><td>${hesc(l.detail)}</td><td class="tright num">${l.score==null?'':l.score}</td></tr>`).join('')}</table></details></div>`}
+function teacherStatsBind(){$('#stImp').onclick=()=>{try{const d=JSON.parse(decodeURIComponent(escape(atob($('#stCode').value.trim()))));const L=store.get('log',[]);const have=new Set(L.map(l=>l.t+'|'+l.s+'|'+l.n+'|'+l.type));let n=0;(d.log||[]).forEach(l=>{const k=l.t+'|'+l.s+'|'+l.n+'|'+l.type;if(!have.has(k)){L.push(l);have.add(k);n++}});L.sort((a,b)=>a.t-b.t);store.set('log',L);const st=store.get('students',{});const key=d.student.name+'#'+d.student.no;st[key]=Object.assign(st[key]||{},{name:d.student.name,no:d.student.no,g:d.g,last:Math.max(st[key]?.last||0,...(d.log||[]).map(l=>l.t))});store.set('students',st);toast(`${d.student.name} 학생 활동 ${n}개 가져옴`);renderTeacher()}catch(e){$('#stMsg').innerHTML='<span style="color:var(--bad)">코드를 읽을 수 없어요. 전체를 정확히 붙여 넣었는지 확인하세요.</span>'}};
+ $('#stCsv').onclick=()=>{const L=store.get('log',[]);navigator.clipboard.writeText('시간,학년,번호,이름,활동,내용,점수\n'+L.map(l=>[new Date(l.t).toLocaleString(),l.g,l.n,l.s,l.type,'"'+String(l.detail).replace(/"/g,'""')+'"',l.score??''].join(',')).join('\n')).then(()=>toast('복사했습니다')).catch(()=>toast('복사 차단'))};
+ $('#stWipe').onclick=()=>{$('#stMsg').innerHTML='정말 삭제할까요? <button class="sm" id="stWipeYes" style="color:var(--bad)">네, 삭제</button>';$('#stWipeYes').onclick=()=>{store.set('log',[]);store.set('students',{});toast('삭제했습니다');renderTeacher()}}}
+
+/* ================= AI 문제 생성 (Claude API) ================= */
+const hesc2=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SETUP_TOKEN='hQB6ggns3QBzwVPg82eyXAq6FXVyVkYTGlvSynB4';const setupMode=()=>location.hash==='#setup-'+SETUP_TOKEN;window.addEventListener('hashchange',()=>initGate());
+const AI={key:()=>store.get('aiKey',''),model:()=>store.get('aiModel','claude-haiku-5-5'),
+ MODELS:[['claude-haiku-5-5','Haiku 5.5 — 빠르고 저렴 (추천)'],['claude-sonnet-5-5','Sonnet 5.5 — 더 정교'],['claude-opus-5-5','Opus 5.5 — 최고 품질(비쌈)']],PRICE:{'claude-haiku-5-5':[1,5],'claude-sonnet-5-5':[3,15],'claude-opus-5-5':[15,75]},
+ async chat(system,user,opt={}){if(!AI.key())throw new Error('API 키를 먼저 저장하세요');const body={model:AI.model(),max_tokens:opt.max||6000,system,messages:[{role:'user',content:user}]};const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':AI.key(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok){const m=j.error?.message||r.status;throw new Error(/401|invalid x-api-key|authentication/i.test(m)?'API 키가 올바르지 않아요':/credit|billing|balance/i.test(m)?'크레딧이 부족해요 (console.anthropic.com에서 충전)':/429|rate/i.test(m)?'요청이 너무 많아요. 잠시 후 다시':m)}const text=(j.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');const u=j.usage||{};const pr=AI.PRICE[body.model]||[3,15];const usd=((u.input_tokens||0)*pr[0]+(u.output_tokens||0)*pr[1])/1e6;const tot=store.get('aiSpent',{usd:0,n:0});tot.usd+=usd;tot.n++;store.set('aiSpent',tot);return{text,usd}},
+ json(text){let t=text.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');const a=t.indexOf('{'),b=t.lastIndexOf('}');return JSON.parse(t.slice(a,b+1))}};
+const HL_GRADE_DESC={m1:'중학교 1학년 사회(지리·일반사회)',m2:'중학교 2학년 역사·사회',m3:'중학교 3학년 역사·사회',h1:'고등학교 1학년 통합사회·한국사',h2:'고등학교 2학년 (한국사·세계사·사회 선택)',h3:'고등학교 3학년 수능 사회탐구 수준'};
+function aiTeacherCard(){const sp=store.get('aiSpent',{n:0,usd:0});const u=U();const days=((DAYS[G().id]||[])[S.u]||[]);return `<div class="card"><div class="row between"><h3>🤖 AI 문제 자동 생성</h3><span style="font-size:12px;color:var(--muted)">누적 ${sp.n}회 · 약 $${sp.usd.toFixed(3)}</span></div>
+ <p style="font-size:13px;color:var(--muted);margin:4px 0 8px">Claude API 키는 <b>이 브라우저에만</b> 저장돼요(사이트 코드·학생에게 안 감). 현재 학년·단원(<b>${hesc(G().name)} · ${hesc(u[0])}</b>)의 일차별 요약 ${days.length}개를 근거로 문제를 만듭니다.</p>
+ <div class="row"><span class="pill ${AI.key()?'good':'bad'}">${AI.key()?'✓ AI 연결됨 ('+AI.model().replace('claude-','')+')':'✗ 키 없음 — 관리자의 비밀 설정 링크를 이 기기에서 열어 주세요'}</span></div>
+ <div class="row" style="margin-top:8px"><input type="text" id="aiTopic" placeholder="추가 지시 (선택: 예 '지도 읽기 위주', '서술형 대비 개념 확인')" style="flex:1;min-width:200px"><label style="font-size:13px"><input type="checkbox" class="aiT" value="quiz" checked> 객관식 퀴즈</label><label style="font-size:13px"><input type="checkbox" class="aiT" value="facts" checked> 용어·정의(학습지용)</label><label style="font-size:13px">개수 <select id="aiN"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label><button class="pri" id="aiGo">✨ 생성</button></div>
+ <div id="aiOut" style="margin-top:10px"></div></div>`}
+function aiTeacherBind(){const kv=()=>{};
+ $('#aiGo').onclick=async()=>{if(!AI.key()){toast('AI 키가 없어요. 관리자의 비밀 설정 링크를 이 기기에서 열어 주세요');return}const types={};$$('.aiT:checked').forEach(c=>types[c.value]=true);if(!Object.keys(types).length){toast('유형을 고르세요');return}const n=+$('#aiN').value;const out=$('#aiOut');const u=U();const days=((DAYS[G().id]||[])[S.u]||[]);const ctx=days.map(d=>`- ${d[0]}: ${(d[1]||[]).join(' ')}${d[2]?' [핵심어: '+[].concat(d[2]).join(', ')+']':''}`).join('\n').slice(0,6000);
+  out.innerHTML='<p style="font-size:13px">✨ 만드는 중… (10~30초)</p>';$('#aiGo').disabled=true;
+  const want=[];if(types.quiz)want.push(`"quiz": ${n}개의 객관식 문항 배열. 각 항목 {q: 문제(한국어), o: 보기 4개 배열, a: 정답 인덱스 0-3, e: 한 줄 해설}. 보기는 그럴듯한 오답 3개 + 정답 1개, 정답 위치를 고르게 섞을 것. 단순 암기뿐 아니라 자료 해석·인과 관계 문항도 섞을 것.`);if(types.facts)want.push(`"facts": ${n}개의 핵심 용어 배열. 각 항목 {t: 용어, d: 한 문장 정의(교과서 표현, 40자 내외)}.`);
+  try{const r=await AI.chat(`당신은 한국 ${HL_GRADE_DESC[G().id]||'중등 사회'} 교사다. 교육과정과 교과서 서술에 충실하고, 사실 오류가 없어야 한다. 반드시 유효한 JSON만 출력(마크다운·설명 금지). 문체는 '~이다/~인가?'체.`,`단원: ${u[0]}\n학년: ${G().name}\n${$('#aiTopic').value.trim()?'추가 지시: '+$('#aiTopic').value.trim()+'\n':''}\n[수업 요약 자료]\n${ctx||'(요약 없음 — 단원명을 근거로 교과 내용 전반에서 출제)'}\n\n다음 키를 가진 JSON 객체를 출력:\n${want.join('\n')}`);const d=AI.json(r.text);const Q=(d.quiz||[]).filter(x=>x&&x.q&&Array.isArray(x.o)&&x.o.length===4),F=(d.facts||[]).filter(x=>x&&x.t&&x.d);
+   out.innerHTML=`<div class="row between"><span style="font-size:12px;color:var(--muted)">퀴즈 ${Q.length} · 용어 ${F.length} · 비용 약 $${r.usd.toFixed(4)}</span><label style="font-size:12px"><input type="checkbox" id="aiAll" checked> 전체 선택</label></div><div class="ws" style="margin-top:8px;max-height:300px;overflow:auto">${Q.map((q,i)=>`<label class="item" style="cursor:pointer"><input type="checkbox" class="aiPick" data-k="q" data-i="${i}" checked><div style="flex:1;font-size:13px">${hesc(q.q)}<div class="ans">${q.o.map((o,k)=>k===+q.a?`<b>${hesc(o)}</b>`:hesc(o)).join(' · ')}</div><div style="color:var(--muted);font-size:12px">${hesc(q.e||'')}</div></div></label>`).join('')}${F.map((f,i)=>`<label class="item" style="cursor:pointer"><input type="checkbox" class="aiPick" data-k="f" data-i="${i}" checked><div style="flex:1;font-size:13px"><b>${hesc(f.t)}</b> — ${hesc(f.d)}</div></label>`).join('')}</div><div class="row" style="margin-top:8px"><button class="pri" id="aiAdd">선택한 것 등록 (퀴즈·시험·레이스·학습지에 자동 포함)</button></div>`;
+   $('#aiAll').onchange=e=>$$('.aiPick').forEach(c=>c.checked=e.target.checked);
+   $('#aiAdd').onclick=()=>{const myq=store.get('myq',[]),myf=store.get('myf',[]);let n1=0,n2=0;$$('.aiPick:checked').forEach(c=>{const i=+c.dataset.i;if(c.dataset.k==='q'){const q=Q[i];myq.push({g:G().id,q:q.q,o:q.o,a:+q.a,e:q.e||'AI 생성 문제',ai:1});n1++}else{const f=F[i];if(!myf.some(x=>x.t===f.t)){myf.push({g:G().id,t:f.t,d:f.d});n2++}}});store.set('myq',myq);store.set('myf',myf);toast(`퀴즈 ${n1}개, 용어 ${n2}개 등록`);renderTeacher()}}
+  catch(e){out.innerHTML=`<p style="font-size:13px;color:var(--bad,#c33)">⚠️ ${hesc(e.message)}${/JSON/i.test(e.message)?' — 응답 형식 오류, 다시 생성해 보세요':''}</p>`}$('#aiGo').disabled=false}}
+
 function applyBig(){document.documentElement.style.fontSize=store.get('big',false)?'19px':''}
 
 /* ================= GAMES HUB ================= */
@@ -1417,7 +1498,7 @@ function answer(p,i,cpu){if(!race||race.done||race.cur.answered[p]||Date.now()<r
  if(P.pos>=race.len){finish(p);return}
  const both=race.cur.answered[0]&&race.cur.answered[1];if(both)setTimeout(()=>{if(race&&!race.done)nextQ()},900)}
 function tick(){if(!race||race.done)return;race.tLeft=Math.max(0,15-(Date.now()-race.cur.start)/1000);const t=$('#rcT');if(t)t.textContent=race.tLeft.toFixed(1)+'초';if(race.tLeft<=0){race.cur.answered=[true,true];nextQ()}}
-function finish(w){race.done=true;clearInterval(race.iv);clearTimeout(race.cpuT);const sec=((Date.now()-race.t0)/1000).toFixed(1);const P=race.p[w];const acc=P.n?Math.round(P.ok/P.n*100):0;const name=w===0?'P1':race.mode==='cpu'?'컴퓨터':'P2';
+function finish(w){race.done=true;clearInterval(race.iv);clearTimeout(race.cpuT);const sec=((Date.now()-race.t0)/1000).toFixed(1);const P=race.p[w];const acc=P.n?Math.round(P.ok/P.n*100):0;const name=w===0?'P1':race.mode==='cpu'?'컴퓨터':'P2';logAct('레이스',G().name+' · '+U()[0]+' — '+(w===0?'승리':'패배'),race.p[0].n?Math.round(race.p[0].ok/race.p[0].n*100):null);
  $('#rcArena').innerHTML=`<div class="card" style="text-align:center"><div class="eyebrow">결승선 통과</div><h2 style="font-size:32px;margin:6px 0">${name} 승리! 🏁</h2><p class="num">${sec}초 · 정확도 ${acc}% · 문제 ${race.qi}개</p>
  ${w===0||race.mode==='2p'?`<div class="row" style="justify-content:center"><input type="text" id="lbName" placeholder="이름 (기록 저장)" maxlength="12"><button class="pri" id="lbSave">기록 저장</button></div>`:''}<div class="row" style="justify-content:center;margin-top:10px"><button id="rcAgain">다시 하기</button></div></div>`;
  const sv=$('#lbSave');if(sv)sv.onclick=()=>{const n=$('#lbName').value.trim()||name;const lb=store.get('lb',[]);lb.push({n,g:G().name,t:sec,acc});lb.sort((a,b)=>a.t-b.t);store.set('lb',lb.slice(0,20));toast('저장했습니다');renderRace($('#gameBody'))};
@@ -1474,7 +1555,7 @@ function drawExam(){$('#exBody').innerHTML=`<div class="card"><div class="row be
  $$('#exBody [data-q]').forEach(b=>b.onclick=()=>{const q=ex.qs[+b.dataset.q];q.pick=+b.dataset.o;$$(`#exBody [data-q="${b.dataset.q}"]`).forEach(x=>x.classList.toggle('act',+x.dataset.o===q.pick))});
  $('#exSubmit').onclick=gradeExam}
 function gradeExam(){clearInterval(ex.iv);const ok=ex.qs.filter(q=>q.pick!==null&&q.opts[q.pick].ok).length,s=Math.round(ok/ex.qs.length*100);
- const h=store.get('exam',[]);h.push({s,g:G().name,n:ex.qs.length,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('exam',h.slice(-50));
+ const h=store.get('exam',[]);h.push({s,g:G().name,n:ex.qs.length,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('exam',h.slice(-50));logAct('모의시험',G().name+' '+ex.qs.length+'문제',s);
  $('#exBody').innerHTML=`<div class="card" style="text-align:center"><div class="eyebrow">채점 결과</div><h2 style="font-size:44px;margin:6px 0">${s}점</h2><p>${ok}/${ex.qs.length} 정답 · ${s>=90?'1등급 수준 🏆':s>=70?'잘했어요 👍':'오답을 꼭 복습하세요 📚'}</p></div>`+ex.qs.map((q,i)=>{const r=q.pick!==null&&q.opts[q.pick].ok;return `<div class="card" style="margin-top:8px;border-left:4px solid ${r?'var(--good)':'var(--bad)'}"><b>${i+1}. ${q.q}</b><div style="font-size:14px;margin-top:4px">내 답: ${q.pick===null?'<span class="pill bad">미응답</span>':q.opts[q.pick].t} ${r?'<span class="pill good">정답</span>':'<span class="pill bad">오답</span>'}</div><div class="ans" style="color:var(--good);font-weight:700;font-size:14px">정답: ${q.o[q.a]}</div><div style="font-size:13px;color:var(--muted)">${q.e}</div></div>`}).join('')}
 
 /* ================= STATS ================= */
@@ -1535,10 +1616,13 @@ function renderWS(){
 let qz=null;
 function renderQuiz(){
  $('#content').innerHTML=`<div class="card"><div class="row between"><div><div class="eyebrow">학습 퀴즈</div><h3>매번 랜덤 출제되는 단원 퀴즈</h3></div>
- <div class="row"><select id="qzN">${[5,10,15,20].map(n=>`<option value="${n}" ${n===10?'selected':''}>${n}문제</option>`).join('')}</select><select id="qzPool"><option value="g">이 학년</option><option value="all">전 학년 100문제</option></select><select id="qzTime"><option value="0">시간 제한 없음</option><option value="20">20초</option><option value="10">10초</option></select><label style="font-size:13px"><input type="checkbox" id="qzInst" checked> 즉시 해설</label><button class="pri" id="qzStart">시작</button></div></div></div><div id="qzBody"></div>`;
- $('#qzStart').onclick=startQuiz;
+ <div class="row"><select id="qzN">${[5,10,15,20].map(n=>`<option value="${n}" ${n===10?'selected':''}>${n}문제</option>`).join('')}</select><select id="qzPool"><option value="g">이 학년</option><option value="all">전 학년 100문제</option></select><select id="qzTime"><option value="0">시간 제한 없음</option><option value="20">20초</option><option value="10">10초</option></select><label style="font-size:13px"><input type="checkbox" id="qzInst" checked> 즉시 해설</label><button class="pri" id="qzStart">시작</button>${AI.key()?'<button id="qzAI" title="이 단원 요약을 바탕으로 AI가 새 문제를 만들어요">🤖 AI 새 문제</button>':''}</div></div></div><div id="qzBody"></div>`;
+ $('#qzStart').onclick=startQuiz;const qa=$('#qzAI');if(qa)qa.onclick=aiStudentQuiz;
  const hist=store.get('qh.'+key(),[]);if(hist.length)$('#qzBody').innerHTML=`<div class="card"><div class="eyebrow">최근 기록</div><div class="row" style="margin-top:6px">${hist.slice(-8).reverse().map(h=>`<span class="pill ${h.s>=80?'good':h.s>=50?'warn':'bad'}">${h.s}점 · ${h.d}</span>`).join('')}</div></div>`;
 }
+async function aiStudentQuiz(){const n=+$('#qzN').value||10;const btn=$('#qzAI');btn.disabled=true;btn.textContent='✨ 만드는 중…';const days=((DAYS[G().id]||[])[S.u]||[]);const ctx=days.map(d=>`- ${d[0]}: ${(d[1]||[]).join(' ')}`).join('\n').slice(0,6000);
+ try{const r=await AI.chat(`당신은 한국 ${HL_GRADE_DESC[G().id]||'중등 사회'} 교사다. 교육과정에 충실하고 사실 오류가 없어야 한다. 반드시 유효한 JSON만 출력. 문체는 '~이다/~인가?'체.`,`단원: ${U()[0]}\n학년: ${G().name}\n\n[수업 요약 자료]\n${ctx||'(요약 없음 — 단원명을 근거로 출제)'}\n\n{"quiz":[{q, o(보기 4개 배열), a(정답 인덱스 0-3), e(한 줄 해설)} × ${n}]} 형식의 JSON 객체를 출력. 정답 위치를 고르게 섞고, 자료 해석·인과 문항도 섞을 것.`);const d=AI.json(r.text);const Q=(d.quiz||[]).filter(x=>x&&x.q&&Array.isArray(x.o)&&x.o.length===4).map(x=>({g:G().id,q:x.q,o:x.o,a:+x.a,e:x.e||'AI 생성 문제'}));if(!Q.length)throw new Error('문제를 만들지 못했어요. 다시 눌러 보세요');
+  qz={qs:Q.map(q=>({...q,opts:shuffle(q.o.map((t,i)=>({t,ok:i===q.a}))),pick:null})),i:0,tl:+$('#qzTime').value,inst:$('#qzInst').checked,t0:Date.now(),iv:null,ai:true};toast(`🤖 ${U()[0]} AI 문제 ${Q.length}개`);drawQ()}catch(e){toast('⚠️ '+e.message);btn.disabled=false;btn.textContent='🤖 AI 새 문제'}}
 function startQuiz(){const n=+$('#qzN').value||10,pool=$('#qzPool').value==='g'?poolQuiz(G().id):allQuiz(),tl=+$('#qzTime').value,inst=$('#qzInst').checked;
  qz={qs:shuffle(pool).slice(0,n).map(q=>({...q,opts:shuffle(q.o.map((t,i)=>({t,ok:i===q.a}))),pick:null})),i:0,tl,inst,t0:Date.now(),iv:null};drawQ()}
 function drawQ(){const q=qz.qs[qz.i];clearInterval(qz.iv);let left=qz.tl;
@@ -1551,16 +1635,16 @@ function pickQ(i){const q=qz.qs[qz.i];if(q.pick!==null)return;clearInterval(qz.i
  const next=()=>{qz.i++;qz.i<qz.qs.length?drawQ():endQuiz()};
  if(qz.inst){$('#qzFb').innerHTML=`<div class="card soft"><b>${ok?'정답! 🎉':i<0?'시간 초과':'아쉽네요'}</b> <span style="font-size:14px">— ${q.e}</span><div class="row" style="margin-top:8px"><button class="pri" id="qzNext">다음</button></div></div>`;$('#qzNext').onclick=next}else setTimeout(next,600)}
 function endQuiz(){const ok=qz.qs.filter(q=>q.pick>=0&&q.opts[q.pick].ok).length,s=Math.round(ok/qz.qs.length*100),sec=((Date.now()-qz.t0)/1000).toFixed(0);
- const rec=store.get('rec.'+key(),{best:null,n:0});rec.n++;rec.best=rec.best==null?s:Math.max(rec.best,s);store.set('rec.'+key(),rec);const h=store.get('qh.'+key(),[]);h.push({s,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('qh.'+key(),h.slice(-20));renderNav();
+ const rec=store.get('rec.'+key(),{best:null,n:0});rec.n++;rec.best=rec.best==null?s:Math.max(rec.best,s);store.set('rec.'+key(),rec);const h=store.get('qh.'+key(),[]);h.push({s,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('qh.'+key(),h.slice(-20));logAct(qz.ai?'AI퀴즈':'퀴즈',G().name+' · '+U()[0]+' ('+qz.qs.length+'문제)',s);renderNav();
  $('#qzBody').innerHTML=`<div class="card" style="text-align:center"><div class="eyebrow">결과</div><h2 style="font-size:40px;margin:6px 0">${s}점</h2><p class="num">${ok}/${qz.qs.length} 정답 · ${sec}초 · ${s>=90?'완벽해요!':s>=70?'잘했어요':s>=50?'조금 더 복습!':'해설을 다시 읽어 보세요'}</p>
  <div class="row" style="justify-content:center"><button class="pri" id="qzRe">새 문제로 다시</button><button id="qzRev">오답 보기</button></div></div><div id="qzRevBody"></div>`;
  $('#qzRe').onclick=startQuiz;$('#qzRev').onclick=()=>{const wrong=qz.qs.filter(q=>!(q.pick>=0&&q.opts[q.pick].ok));$('#qzRevBody').innerHTML=wrong.length?`<div class="card ws">${wrong.map((q,i)=>`<div class="item"><i>${i+1}</i><div>${q.q}<div class="ans">정답: ${q.o[q.a]}</div><div style="font-size:13px;color:var(--muted)">${q.e}</div></div></div>`).join('')}</div>`:'<div class="card">틀린 문제가 없습니다. 🎉</div>'}}
 
 /* ================= BOOT ================= */
-applyBig();go();
+applyBig();initGate();
 window.addEventListener('resize',()=>{if(race)moveCars()});
 $('#searchBtn').onclick=openSearch;document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 $$('.hero .quick button').forEach(b=>b.onclick=()=>{S.mod=b.dataset.q;if(S.mod==='race')S.game='race';go();document.querySelector('.mods').scrollIntoView({behavior:'smooth',block:'start'})});
 </script>
-</body>
-</html>
+
+</body></html>
