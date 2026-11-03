@@ -7,14 +7,14 @@
 <meta name="description" content="중학교 1학년부터 고등학교 3학년까지 사회·역사 전 단원을 시뮬레이션, 경쟁 퀴즈 레이스, 강의 영상, 랜덤 학습지, 퀴즈, 모의시험으로 공부하는 무료 학습 사이트.">
 <meta name="keywords" content="중학 사회, 중학 역사, 고등 통합사회, 한국사, 세계사, 정치와 법, 경제, 세계지리, 학습지, 퀴즈, 시뮬레이션, 수업 자료">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/">
+<link rel="canonical" href="https://xn--vf4b231b.xn--yq5b.xn--3e0b707e/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="사회역사 학습 랩">
 <meta property="og:description" content="시뮬레이션·레이스 게임·영상·학습지·퀴즈로 배우는 중1~고3 사회·역사">
-<meta property="og:url" content="https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/">
+<meta property="og:url" content="https://xn--vf4b231b.xn--yq5b.xn--3e0b707e/">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#101b33">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"사회역사 학습 랩","url":"https://xn--vf4b231b.xn--hu5b25b77nvwc.xn--3e0b707e/","description":"중1~고3 사회·역사 학습 사이트: 시뮬레이션, 경쟁 게임, 영상, 학습지, 퀴즈","inLanguage":"ko"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"사회역사 학습 랩","url":"https://xn--vf4b231b.xn--yq5b.xn--3e0b707e/","description":"중1~고3 사회·역사 학습 사이트: 시뮬레이션, 경쟁 게임, 영상, 학습지, 퀴즈","inLanguage":"ko"}</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
 /* Layout: glowing navy "night lab". Sticky top bar, grade chips, unit rail, main stage. Dark-first with full light theme. */
@@ -189,7 +189,7 @@ body.gated .top,body.gated .hero,body.gated .wrap,body.gated .footer{display:non
   </main>
 </div>
 <div class="toast" id="toast"></div>
-<div class="footer">사회역사 학습 랩 · 사회.홈페이지.한국 · 함께 탐구하고 성장하는 사회·역사 시간 ✨</div>
+<div class="footer">사회역사 학습 랩 · 사회.웹.한국 · 함께 탐구하고 성장하는 사회·역사 시간 ✨</div>
 
 <script>
 /* ================= DATA ================= */
@@ -661,7 +661,7 @@ h3:[
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const rnd=n=>Math.floor(Math.random()*n), shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
 const store={get(k,d){try{const v=localStorage.getItem('hl.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('hl.'+k,JSON.stringify(v))}catch(e){}}};
-const MODS=[['days','📅 일차별 요약'],['sim','🧪 시뮬레이션'],['race','🎮 게임'],['video','🎬 영상'],['ws','📄 학습지'],['quiz','❓ 퀴즈'],['exam','📝 모의시험'],['stats','📊 통계'],['units','📚 단원 요약'],['my','📈 내 기록'],['teacher','👩‍🏫 선생님 도구']];
+const MODS=[['days','📅 일차별 요약'],['sim','🧪 시뮬레이션'],['race','🎮 게임'],['video','🎬 영상'],['ws','📄 학습지'],['quiz','❓ 퀴즈'],['exam','📝 모의시험'],['ai','🤖 AI 문제'],['stats','📊 통계'],['units','📚 단원 요약'],['my','📈 내 기록'],['teacher','👩‍🏫 선생님 도구']];
 let S={g:0,u:0,mod:'sim',sem:1};
 Object.assign(S,store.get('nav',{}));if(!GRADES[S.g]||!GRADES[S.g].units[S.u]){S.g=0;S.u=0}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1800)}
@@ -691,7 +691,7 @@ function renderNav(){
  $('#mods').innerHTML=visMods().map(m=>`<button class="${m[0]===S.mod?'on':''}" data-m="${m[0]}">${m[1]}</button>`).join('');
  $$('#mods button').forEach(b=>b.onclick=()=>{S.mod=b.dataset.m;go()});
 }
-function go(){store.set('nav',{g:S.g,u:S.u,mod:S.mod,sem:S.sem});renderNav();stopRace();if(S.mod==='teacher'&&!isT())S.mod='days';if(S.mod==='my'&&!isS())S.mod='days';({days:renderDays,sim:renderSim,race:renderGames,video:renderVideo,ws:renderWS,quiz:renderQuiz,exam:renderExam,stats:renderStats,teacher:renderTeacher,units:renderUnits,my:renderMy})[S.mod]()}
+function go(){store.set('nav',{g:S.g,u:S.u,mod:S.mod,sem:S.sem});renderNav();stopRace();if(S.mod==='teacher'&&!isT())S.mod='days';if(S.mod==='my'&&!isS())S.mod='days';({days:renderDays,sim:renderSim,race:renderGames,video:renderVideo,ws:renderWS,quiz:renderQuiz,exam:renderExam,stats:renderStats,teacher:renderTeacher,units:renderUnits,my:renderMy,ai:renderAI})[S.mod]()}
 
 /* ================= TIMER ================= */
 let tmSec=0,tmOn=null;
@@ -1664,6 +1664,19 @@ function renderQuiz(){
  $('#qzStart').onclick=startQuiz;const qa=$('#qzAI');if(qa)qa.onclick=aiStudentQuiz;
  const hist=store.get('qh.'+key(),[]);if(hist.length)$('#qzBody').innerHTML=`<div class="card"><div class="eyebrow">최근 기록</div><div class="row" style="margin-top:6px">${hist.slice(-8).reverse().map(h=>`<span class="pill ${h.s>=80?'good':h.s>=50?'warn':'bad'}">${h.s}점 · ${h.d}</span>`).join('')}</div></div>`;
 }
+
+/* ---- 학생·선생님 공용 AI 문제 모듈 ---- */
+function renderAI(){const gid=G().id;const sets=store.get('aisets',[]).filter(x=>x.g===gid).slice().reverse();
+ $('#content').innerHTML=`<div class="card"><div class="row between"><div><div class="eyebrow">🤖 AI 문제 · ${hesc(G().name)}</div><h3>${AI.ready()?'단원을 고르면 AI가 새 문제를 만들어요':'이 기기에 AI 설정이 없어요'}</h3></div><span class="pill ${AI.ready()?'good':''}">${AI.ready()?'✓ '+hesc(AI.label()):'AI 미설정'}</span></div>
+  ${AI.ready()?`<div class="row" style="margin-top:10px"><select id="aiUnit" style="flex:1;min-width:220px">${G().units.map((u,i)=>`<option value="${i}" ${i===S.u?'selected':''}>${u[2]}학기 · ${hesc(u[0])}</option>`).join('')}<option value="all">${hesc(G().name)} 전체 복습</option></select><select id="aiKind"><option value="mix">종합(사실+자료 해석)</option><option value="term">용어·개념 확인</option><option value="cause">인과·비교 사고력</option><option value="ox">OX 퀴즈</option></select><select id="aiN"><option>5</option><option selected>10</option><option>15</option></select><button class="pri" id="aiMake">✨ 문제 만들기</button></div><p style="font-size:13px;color:var(--muted);margin-top:6px">만든 문제는 바로 풀고, 아래 "내 AI 세트"에 저장돼 다시 풀 수 있어요. 점수는 ${isS()?'내 기록에':'통계에'} 남아요.</p><div id="aiMsg" style="font-size:13px;margin-top:6px;min-height:18px"></div>`:`<p style="font-size:13px;color:var(--muted);margin-top:8px">선생님 컴퓨터·패드처럼 AI가 설정된 기기에서 쓸 수 있어요. 선생님이 등록한 AI 문제는 ❓ 퀴즈·📝 모의시험에 이미 섞여 나와요.</p>`}</div>
+ <div class="card"><div class="row between"><h3>📚 내 AI 세트 (${sets.length})</h3><span style="font-size:12px;color:var(--muted)">이 학년</span></div><div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">${sets.map(st=>`<div class="item" style="align-items:center"><div style="flex:1"><b>${hesc(st.title)}</b><div style="font-size:12px;color:var(--muted)">${st.qs.length}문제 · ${hesc(st.kind)} · ${new Date(st.t).toLocaleDateString()} · 만든이 ${hesc(st.by)}${st.best!=null?' · 최고 '+st.best+'점':''}</div></div><button class="sm pri" data-play="${st.id}">풀기</button><button class="sm" data-del="${st.id}">삭제</button></div>`).join('')||'<p style="font-size:13px;color:var(--muted)">아직 없어요. 위에서 만들어 보세요!</p>'}</div></div>`;
+ const mk=$('#aiMake');if(mk)mk.onclick=async()=>{const v=$('#aiUnit').value;const kind=$('#aiKind').value;const n=+$('#aiN').value;mk.disabled=true;$('#aiMsg').textContent='✨ 만드는 중… (10~30초)';
+  const units=v==='all'?G().units.map((u,i)=>i):[+v];const ctx=units.map(i=>{const d=((DAYS[gid]||[])[i]||[]);return `[${G().units[i][0]}]\n`+d.map(x=>`- ${x[0]}: ${(x[1]||[]).join(' ')}`).join('\n')}).join('\n\n').slice(0,7000);const title=v==='all'?G().name+' 전체 복습':G().units[+v][0];
+  const KIND={mix:'사실 확인·자료 해석·인과 관계를 고르게 섞은 객관식',term:'핵심 용어와 개념의 정의를 묻는 객관식',cause:'원인-결과, 비교·대조, 의의를 묻는 사고력 객관식',ox:'OX 퀴즈(보기는 ["O","X"] 두 개, 정답 인덱스 0 또는 1)'}[kind];
+  try{const r=await AI.chat(`당신은 한국 ${HL_GRADE_DESC[gid]||'중등 사회'} 교사다. 교육과정과 교과서 서술에 충실하고 사실 오류가 없어야 한다. 반드시 유효한 JSON만 출력(마크다운·설명 금지). 문자열 안에는 큰따옴표(")를 쓰지 말고 「」를 사용. 문체는 '~이다/~인가?'체.`,`단원: ${title}\n학년: ${G().name}\n유형: ${KIND}\n\n[수업 요약 자료]\n${ctx||'(요약 없음 — 단원명을 근거로 출제)'}\n\n{"quiz":[{q(문제), o(보기 배열: 객관식 4개 / OX는 ["O","X"]), a(정답 인덱스), e(한 줄 해설)} × ${n}]} 형식의 JSON 객체를 출력. 정답 위치를 고르게 섞을 것.`,{max:12000});const d=await AI.parse(r.text);const Q=(d.quiz||[]).filter(x=>x&&x.q&&Array.isArray(x.o)&&(x.o.length===4||(kind==='ox'&&x.o.length===2))).map(x=>({g:gid,q:x.q,o:x.o,a:+x.a,e:x.e||'AI 생성 문제'}));if(!Q.length)throw new Error('문제를 만들지 못했어요. 다시 눌러 보세요');
+   const set={id:Math.random().toString(36).slice(2,8),t:Date.now(),g:gid,title,kind:$('#aiKind').selectedOptions[0].textContent,qs:Q,by:isS()?SES.student.name:TEACHER_NAME,best:null};const all=store.get('aisets',[]);all.push(set);if(all.length>60)all.splice(0,all.length-60);store.set('aisets',all);if(isS())logAct('AI생성','AI 문제 생성: '+title);playSet(set)}catch(e){$('#aiMsg').innerHTML=`<span style="color:var(--bad)">⚠️ ${hesc(e.message)}</span>`;mk.disabled=false}};
+ $$('[data-play]').forEach(b=>b.onclick=()=>{const st=store.get('aisets',[]).find(x=>x.id===b.dataset.play);if(st)playSet(st)});$$('[data-del]').forEach(b=>b.onclick=()=>{store.set('aisets',store.get('aisets',[]).filter(x=>x.id!==b.dataset.del));renderAI()})}
+function playSet(set){qz={qs:set.qs.map(q=>({...q,opts:shuffle(q.o.map((t,i)=>({t,ok:i===q.a}))),pick:null})),i:0,tl:0,inst:true,t0:Date.now(),iv:null,ai:true,setId:set.id};S.mod='quiz';store.set('nav',{g:S.g,u:S.u,mod:S.mod,sem:S.sem});renderNav();$('#content').innerHTML='<div id="qzBody"></div>';toast(`🤖 ${set.title} · ${set.qs.length}문제`);drawQ()}
 async function aiStudentQuiz(){const n=+$('#qzN').value||10;const btn=$('#qzAI');btn.disabled=true;btn.textContent='✨ 만드는 중…';const days=((DAYS[G().id]||[])[S.u]||[]);const ctx=days.map(d=>`- ${d[0]}: ${(d[1]||[]).join(' ')}`).join('\n').slice(0,6000);
  try{const r=await AI.chat(`당신은 한국 ${HL_GRADE_DESC[G().id]||'중등 사회'} 교사다. 교육과정에 충실하고 사실 오류가 없어야 한다. 반드시 유효한 JSON만 출력. 문자열 안에는 큰따옴표(")를 쓰지 말고 「」를 사용. 문체는 '~이다/~인가?'체.`,`단원: ${U()[0]}\n학년: ${G().name}\n\n[수업 요약 자료]\n${ctx||'(요약 없음 — 단원명을 근거로 출제)'}\n\n{"quiz":[{q, o(보기 4개 배열), a(정답 인덱스 0-3), e(한 줄 해설)} × ${n}]} 형식의 JSON 객체를 출력. 정답 위치를 고르게 섞고, 자료 해석·인과 문항도 섞을 것.`);const d=await AI.parse(r.text);const Q=(d.quiz||[]).filter(x=>x&&x.q&&Array.isArray(x.o)&&x.o.length===4).map(x=>({g:G().id,q:x.q,o:x.o,a:+x.a,e:x.e||'AI 생성 문제'}));if(!Q.length)throw new Error('문제를 만들지 못했어요. 다시 눌러 보세요');
   qz={qs:Q.map(q=>({...q,opts:shuffle(q.o.map((t,i)=>({t,ok:i===q.a}))),pick:null})),i:0,tl:+$('#qzTime').value,inst:$('#qzInst').checked,t0:Date.now(),iv:null,ai:true};toast(`🤖 ${U()[0]} AI 문제 ${Q.length}개`);drawQ()}catch(e){toast('⚠️ '+e.message);btn.disabled=false;btn.textContent='🤖 AI 새 문제'}}
@@ -1679,7 +1692,7 @@ function pickQ(i){const q=qz.qs[qz.i];if(q.pick!==null)return;clearInterval(qz.i
  const next=()=>{qz.i++;qz.i<qz.qs.length?drawQ():endQuiz()};
  if(qz.inst){$('#qzFb').innerHTML=`<div class="card soft"><b>${ok?'정답! 🎉':i<0?'시간 초과':'아쉽네요'}</b> <span style="font-size:14px">— ${q.e}</span><div class="row" style="margin-top:8px"><button class="pri" id="qzNext">다음</button></div></div>`;$('#qzNext').onclick=next}else setTimeout(next,600)}
 function endQuiz(){const ok=qz.qs.filter(q=>q.pick>=0&&q.opts[q.pick].ok).length,s=Math.round(ok/qz.qs.length*100),sec=((Date.now()-qz.t0)/1000).toFixed(0);
- const rec=store.get('rec.'+key(),{best:null,n:0});rec.n++;rec.best=rec.best==null?s:Math.max(rec.best,s);store.set('rec.'+key(),rec);const h=store.get('qh.'+key(),[]);h.push({s,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('qh.'+key(),h.slice(-20));logAct(qz.ai?'AI퀴즈':'퀴즈',G().name+' · '+U()[0]+' ('+qz.qs.length+'문제)',s);renderNav();
+ const rec=store.get('rec.'+key(),{best:null,n:0});rec.n++;rec.best=rec.best==null?s:Math.max(rec.best,s);store.set('rec.'+key(),rec);const h=store.get('qh.'+key(),[]);h.push({s,d:new Date().toLocaleDateString('ko-KR',{month:'numeric',day:'numeric'})});store.set('qh.'+key(),h.slice(-20));logAct(qz.ai?'AI퀴즈':'퀴즈',G().name+' · '+U()[0]+' ('+qz.qs.length+'문제)',s);if(qz.setId){const all=store.get('aisets',[]);const st=all.find(x=>x.id===qz.setId);if(st){st.best=st.best==null?s:Math.max(st.best,s);store.set('aisets',all)}}renderNav();
  $('#qzBody').innerHTML=`<div class="card" style="text-align:center"><div class="eyebrow">결과</div><h2 style="font-size:40px;margin:6px 0">${s}점</h2><p class="num">${ok}/${qz.qs.length} 정답 · ${sec}초 · ${s>=90?'완벽해요!':s>=70?'잘했어요':s>=50?'조금 더 복습!':'해설을 다시 읽어 보세요'}</p>
  <div class="row" style="justify-content:center"><button class="pri" id="qzRe">새 문제로 다시</button><button id="qzRev">오답 보기</button></div></div><div id="qzRevBody"></div>`;
  $('#qzRe').onclick=startQuiz;$('#qzRev').onclick=()=>{const wrong=qz.qs.filter(q=>!(q.pick>=0&&q.opts[q.pick].ok));$('#qzRevBody').innerHTML=wrong.length?`<div class="card ws">${wrong.map((q,i)=>`<div class="item"><i>${i+1}</i><div>${q.q}<div class="ans">정답: ${q.o[q.a]}</div><div style="font-size:13px;color:var(--muted)">${q.e}</div></div></div>`).join('')}</div>`:'<div class="card">틀린 문제가 없습니다. 🎉</div>'}}
